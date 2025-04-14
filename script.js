@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Thank you for your message!');
     this.reset();
   });
-  const fullText = "Hello, I'm Jason Shaw";
+  const fullText = "Hello, I'm Jason!";
   const typedTextEl = document.getElementById('typedText');
   let index = 0;
   typedTextEl.textContent = "";
