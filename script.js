@@ -133,3 +133,11 @@ async function updateLineCounts() {
 // run after everything else initializes
 document.addEventListener('DOMContentLoaded', updateLineCounts);
 
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+// ensure top-of-page every time
+window.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
+});
