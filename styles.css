@@ -1178,16 +1178,16 @@ header {
 /* Projects section credits */
 .projects-credits {
     text-align: center;
-    margin-top: auto;
-    padding-top: var(--spacing-lg);
+    margin-top: 0;
+    padding-top: -5rem;
     border-top: 1px solid var(--accent-dim);
 }
 
 .projects-credits p {
     font-size: var(--font-size-xs);
     color: var(--fg-secondary);
-    margin: 0;
-    opacity: 0.7;
+    margin:-5rem;
+    opacity: 0.5;
     font-family: var(--font-mono);
 }
 
