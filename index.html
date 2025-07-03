@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <link rel="icon" href="js_icon.svg">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-oHDEc8XedbSgRYoGtKnVjV1hKpOZASgO6bfE1d3NjkIMkVwmj3T0NuGJyu1Q9vFT+Pnb7Az8+7p0QZV+hvKOew=="
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container simple-nav" id="navBar">
+            <div class="logo-container">
+                <img src="js_icon.svg" alt="Jason Shaw Logo" class="logo">
+                <span class="js-text"><span class="j">J</span><span class="s">S</span></span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress">
+        <div class="progress-line">
+            <div class="progress-fill"></div>
+            <div class="progress-dot hero-dot"></div>
+            <div class="progress-dot projects-dot"></div>
+        </div>
+    </div>
+    
+    <main>
+        <section id="hero" class="hero-compact">
+            <div class="container">
+                <div class="hero-layout">
+                    <div class="hero-left">
+                        <div class="hero-card main-card">
+                            <div class="hero-content">
+                                <div class="hero-text">
+                                    <h1 class="hero-title">Hi, I'm <span>Jason Shaw</span></h1>
+                                    <p class="hero-sub">Electrical engineer & developer focused on <span class="highlight">Mechatronics</span> and <span class="highlight">Embedded systems</span>.</p>
+                                </div>
+                                <div class="hero-photo">
+                                    <img src="jspfp.PNG" alt="Jason Shaw" class="profile-photo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-card contact-card">
+                            <h3>Contact</h3>
+                            <p>Have a project or just want to chat? Reach out any time.</p>
+                            <form class="contact-form">
+                                <div class="form-row">
+                                    <input type="text" placeholder="Name *" required class="form-input">
+                                    <input type="email" placeholder="Email *" required class="form-input">
+                                </div>
+                                <div class="form-content-row">
+                                    <textarea placeholder="Message *" required class="form-textarea"></textarea>
+                                    <button type="submit" class="btn contact-btn">Send</button>
+                                </div>
+                            </form>
+                            <p class="socials-text">Or visit my socials</p>
+                            <div class="socials expanded">
+                                <i class="fab fa-linkedin fa-2x" onclick="location.href='https://www.linkedin.com/in/jason-shaw-a590a5333/'"></i>
+                                <i class="fab fa-github fa-2x" onclick="location.href='https://github.com/jasonshaw0'"></i>
+                                <i class="fab fa-youtube fa-2x" onclick="location.href='https://www.youtube.com/@slaxxis'"></i>
+                                <i class="fab fa-instagram fa-2x" onclick="location.href='https://www.instagram.com/jason._.shaw/'"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-right">
+                        <div class="hero-card about-card">
+                            <h3>About</h3>
+                            <div class="hero-job">
+                                <span class="job-title">Teaching Assistant · EGN 3000L (Foundations of Engineering Lab)</span>
+                            </div>
+                            <p>I'm an Undergraduate electrical engineering student interested in theory, hardware, and software alike. I spend evenings and late nights with hands-on learning such as circuitry experimentation, 3D printing my designs, or developing CS projects like this personal resume page! Aside from academics, I enjoy unwinding by playing my guitar, listening to history podcasts, or going down the occasional philosophy rabbit-hole.</p>
+                            <div class="hero-skills">
+                                <span class="skill-tag usf-theme">University of South Florida · Tampa</span>
+                                <span class="skill-tag">Python · Frontend · C++ & Arduino</span>
+                                <span class="skill-tag">3D Printing · CAD</span>
+                                <span class="skill-tag">Esp32 · Arduino · Raspberry Pi</span>
+                            </div>
+                        </div>
+                        <div class="hero-cta-section">
+                            <div class="hero-cta">
+                                <a class="btn btn-primary" href="../assets/jason-shaw_cv.pdf" download="jason-shaw_cv.pdf">Download CV</a>
+                                <a class="btn btn-secondary" href="#projects">View Projects</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+        <section id="projects" class="container">
+            <h2 id="projects-title" class="projects-title-hidden">Featured Projects</h2>
+            <div class="project-grid">
+                <article class="card">
+                    <h3 class="card-title">Stepper Music Player</h3>
+                    <p class="stack">ESP32 · A4988 · MIDI</p>
+                    <p>Transform stepper motors into a polyphonic instrument — real-time MIDI → micro-step sequencing.
+                    </p>
+                    <a class="btn" href="https://www.youtube.com/watch?v=QQicdJu_anI&ab_channel=Slaxxis" target="_blank">Video Demo</a>
+                </article>
+                <article class="card">
+                    <h3 class="card-title">Quadruped "Argon”</h3>
+                    <p class="stack">C++17 · Python · Robotics</p>
+                    <p>Small quadruped robot with servo motor actuators, PC9685 for PWM, and a custom python controller UI.</p>
+                    <a class="btn" href="https://github.com/jasonshaw0/ArgonOutline" target="_blank">Repo</a>
+                </article>
+                <article class="card">
+                    <h3 class="card-title">Drivester GUI</h3>
+                    <p class="stack">PyQt5 · Kinematics</p>
+                    <p>Desktop tool for diagnosing and tuning stepper drivers with live analytics and integrated MIDI player.</p>
+                    <a class="btn" href="https://github.com/jasonshaw0/Drivester" target="https://github.com/jasonshaw0/Drivester">Repo</a>
+                </article>
+                <article class="card">
+                    <h3 class="card-title">TheoremBank</h3>
+                    <p class="stack">HTML · MathJax · Python</p>
+                    <p>Static reference site for mathematics and physics formulas with LaTeX rendering, advanced search functionality, and a live math editor.</p>
+                    <a class="btn" href="https://github.com/jasonshaw0/Theorembank" target="_blank">Repo</a>
+                </article>
+            </div>
+            <div class="projects-credits">
+                <p>© <span id="year"></span> Jason Shaw. All rights reserved.</p>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
