@@ -1,5 +1,4 @@
-name = "jason-portfolio"
+# wrangler.toml
+name = 'jasonshaw'
 compatibility_date = "2025-07-04"
-
-[assets]
-directory = "./" 
+main = "src/index.ts"
