@@ -186,6 +186,27 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+
+  // Initial layout adjustment and orientation handling
+  function handleOrientationChange() {
+    updateSectionHeights();
+
+    const heroSection = document.getElementById('hero');
+    const projectsSection = document.getElementById('projects');
+    if (!heroSection || !projectsSection) return;
+
+    const heroHeight = heroSection.offsetHeight;
+    const projectsTop = projectsSection.offsetTop;
+    const scrollTop = window.pageYOffset;
+
+    const targetY = scrollTop < heroHeight * 0.5 ? 0 : projectsTop;
+    window.scrollTo(0, targetY);
+  }
+
+  handleOrientationChange();
+  window.addEventListener('orientationchange', () => {
+    setTimeout(handleOrientationChange, 200);
+  });
 });
 
 // Setup scroll progress indicator
@@ -305,6 +326,21 @@ function scrollToProjects() {
       ease: "power3.out"
     });
   }
+}
+
+// Update section heights to match current viewport
+function updateSectionHeights() {
+  const heroSection = document.getElementById('hero');
+  const projectsSection = document.getElementById('projects');
+  if (!heroSection || !projectsSection) return;
+
+  const viewportHeight = window.innerHeight;
+
+  heroSection.style.minHeight = `${viewportHeight}px`;
+  heroSection.style.height = `${viewportHeight}px`;
+
+  projectsSection.style.minHeight = `${viewportHeight}px`;
+  projectsSection.style.height = `${viewportHeight}px`;
 }
 
 // Discrete snap-only scrolling - no variable scrolling allowed
