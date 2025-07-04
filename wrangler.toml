@@ -1,4 +1,4 @@
 # wrangler.toml
 name = 'jasonshaw'
 compatibility_date = "2025-07-04"
-19:04:00.949	  main = "src/index.ts"
+main = "src/index.ts"
