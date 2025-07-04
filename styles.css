@@ -1505,3 +1505,100 @@ h2 {
     background: var(--color-3-4-mid);
 }
 
+/* === Advanced Mobile Refinements (July-2025) ============================= */
+@media (max-width: 768px) {
+  /* Let the header scroll with content so it no longer blocks hero */
+  header {
+    position: static;
+    padding: var(--spacing-sm) var(--spacing-xs);
+  }
+
+  /* Ensure hero section isn't hidden under header */
+  .hero-compact {
+    padding-top: var(--spacing-lg);
+  }
+
+  /* Stack hero photo below text for narrower phones */
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-text {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  /* Comfortable button sizing for thumbs */
+  .btn,
+  .contact-card .contact-btn {
+    min-height: var(--touch-target-min);
+    min-width: 140px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Logo tweaks so it scales gracefully */
+  .simple-nav .logo-container {
+    width: 48px;
+    height: 48px;
+  }
+  .logo {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra-small devices */
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Reduce padding so content fits vertically */
+  .hero-card {
+    padding: var(--spacing-sm);
+  }
+
+  /* Skill tags wrap more tightly */
+  .hero-skills {
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+
+  /* Prevent progress bar from stealing horizontal space */
+  .scroll-progress {
+    display: none;
+  }
+}
+
+/* Fine-tune button proportions */
+@media (max-width: 768px) {
+  .btn,
+  .contact-card .contact-btn {
+    min-width: 110px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-base);
+  }
+
+  /* Slightly narrower side gutters */
+  .container {
+    padding-inline: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra tweaks for ultra-small devices */
+  .btn,
+  .contact-card .contact-btn {
+    min-width: 100px;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs) var(--spacing-xs);
+  }
+
+  .container {
+    padding-inline: var(--spacing-xs);
+  }
+}
+

@@ -300,6 +300,10 @@ function scrollToProjects() {
 
 // Discrete snap-only scrolling - no variable scrolling allowed
 function setupDiscreteScrolling() {
+  // Disable custom snap logic on small screens to keep scrolling smooth
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    return;
+  }
   let isAnimating = false;
   let scrollDirection = 0;
   let scrollAccumulator = 0;
