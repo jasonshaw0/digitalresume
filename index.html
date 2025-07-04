@@ -9,7 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    <link rel="stylesheet" href="https://c2dnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-oHDEc8XedbSgRYoGtKnVjV1hKpOZASgO6bfE1d3NjkIMkVwmj3T0NuGJyu1Q9vFT+Pnb7Az8+7p0QZV+hvKOew=="
         crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
@@ -33,7 +33,7 @@
             <div class="progress-dot projects-dot"></div>
         </div>
     </div>
-    
+
     <main>
         <section id="hero" class="hero-compact">
             <div class="container">
@@ -53,13 +53,13 @@
                         <div class="hero-card contact-card">
                             <h3>Contact</h3>
                             <p>Have a project or just want to chat? Reach out any time.</p>
-                            <form class="contact-form">
+                            <form class="contact-form" action="https://formspree.io/f/xqaqbjee" method="POST">
                                 <div class="form-row">
-                                    <input type="text" placeholder="Name *" required class="form-input">
-                                    <input type="email" placeholder="Email *" required class="form-input">
+                                    <input type="text" placeholder="Name *" required class="form-input" name="name">
+                                    <input type="email" placeholder="Email *" required class="form-input" name="email">
                                 </div>
                                 <div class="form-content-row">
-                                    <textarea placeholder="Message *" required class="form-textarea"></textarea>
+                                    <textarea placeholder="Message *" required class="form-textarea" name="message"></textarea>
                                     <button type="submit" class="btn contact-btn">Send</button>
                                 </div>
                             </form>
@@ -122,6 +122,13 @@
                     <p class="stack">HTML · MathJax · Python</p>
                     <p>Static reference site for mathematics and physics formulas with LaTeX rendering, advanced search functionality, and a live math editor.</p>
                     <a class="btn" href="https://github.com/jasonshaw0/Theorembank" target="_blank">Repo</a>
+                </article>
+                <article class="card">
+                    <h3 class="card-title">The Arduino Guide</h3>
+                    <p class="stack" style=" color: var(--accent-primary); margin-bottom: -6px;">Collaborative Development</p>
+                    <p class="stack">reStructuredText · Sphinx · Git</p>
+                    <p>Professional docs for USF's Foundations of Engineering Lab course. Includes lessons on programming, circuitry, 3D printing, and more.</p>
+                    <a class="btn" href="https://github.com/trevorflahardy/The-Arduino-Guide" target="_blank">Repo</a>
                 </article>
             </div>
             <div class="projects-credits">

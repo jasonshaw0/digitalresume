@@ -265,16 +265,7 @@ function setupButtonHandlers() {
     });
   }
 
-  // Contact form handler (placeholder for Formspree integration)
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // Placeholder - will be replaced with Formspree integration
-      console.log('Form submitted - ready for Formspree integration');
-      // You can add Formspree action URL later
-    });
-  }
+  // Allow the contact form to submit normally to Formspree without JS interception
 }
 
 // Show projects title

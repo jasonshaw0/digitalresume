@@ -15,10 +15,12 @@
 
 :root {
     /* 5-Color Palette System - Dark with Accent Theme */
-    --color-1: #cecece;   /* Light cream/neutral - text & highlights */
-    --color-2: #c6540e;   /* Primary accent red - main accent */
-    --color-3: hsl(0, 0%, 14%);   /* Medium gray - card backgrounds */
-    --color-4: #151719;   /* Dark background - main background */    --color-5: #232323;   /* Darkest background - deeper elements */
+    --color-1: #dedede;   /* Light cream/neutral - text & highlights */
+    --color-2:  #e5a62e;   /* Primary accent red - main accent */
+    --color-3: #242a34;   /* Medium gray - card backgrounds */
+    --color-4: #191e26;   /* Dark background - main background */    --color-5: #232323;   /* Darkest background - deeper elements */
+    /* Mid-tone between color-3 and color-4 for subtle square backgrounds */
+    --color-3-4-mid: #2b2f35;
     
     /* Logo-specific colors */
     --logo-j-color: #ffffff;     /* White for J in logo */
@@ -33,9 +35,9 @@
     --fg-primary: var(--color-1);      /* Main text */
     --fg-secondary: rgba(237, 237, 237, 0.7);  /* Secondary text - derived from color-1 */
     --accent-primary: var(--color-2);  /* Main accent */
-    --accent-secondary: #d43a02;  /* Lighter accent variant - derived from color-2 */
-    --accent-dim: rgb(103, 43, 0);  /* Dimmed accent - derived from color-2 */
-    --accent-hover: #b04b0c;  /* Hover accent - derived from color-2 */
+    --accent-secondary:  #e7b632;  /* Lighter accent variant - derived from color-2 */
+    --accent-dim: #6b4500;  /* Dimmed accent - derived from color-2 */
+    --accent-hover: #ffa600;  /* Hover accent - derived from color-2 */
     
     /* Design system variables */
     --radius-sm: 4px;
@@ -267,11 +269,11 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 2px var(--accent-dim), 0 0 20px var(--accent-dim);
+    box-shadow: 0 0 0 1px var(--accent-dim), 0 0 15px var(--accent-dim);
     transition: var(--t-medium);
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid var(--accent-primary);
+    border: 1px solid var(--accent-primary);
 }
 
 /* Responsive logo */
@@ -303,7 +305,7 @@ header {
 }
 
 .simple-nav .logo-container:hover {
-    transform: translateY(-2px) rotate(2deg) scale(1.1);
+    transform: translateY(-2px) rotate(2deg) scale(1.05);
     box-shadow: 0 0 0 2px var(--accent-primary), 0 0 30px var(--accent-dim);
     border-color: var(--accent-primary);
 }
@@ -377,7 +379,7 @@ header {
 
 .progress-line {
     position: relative;
-    width: 2px;
+    width: 3px;
     height: 60vh;
     background: var(--color-3);
     border-radius: 1px;
@@ -541,11 +543,11 @@ header {
     position: relative;
     z-index: 10;
     pointer-events: auto;
-    width: 156px;
-    height: 156px;
+    width: 158px;
+    height: 158px;
     border-radius: var(--radius-xl);
     overflow: hidden;
-    border: 2px solid var(--accent-primary);
+    border: 1px solid var(--accent-primary);
     box-shadow: 0 8px 10px var(--accent-dim);
     transition: var(--t-medium);
     cursor: pointer;
@@ -585,7 +587,7 @@ header {
 }
 
 .profile-photo:hover {
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 .hero-left {
@@ -682,6 +684,8 @@ header {
 .main-card {
     border: 1px solid var(--accent-dim);
     padding: 1.8rem;
+    /* Use the mid-tone color for distinct yet cohesive look */
+    background: var(--color-3-4-mid);
 }
 
 .about-card {
@@ -713,6 +717,8 @@ header {
     flex-direction: column;
     justify-content: space-between;
     padding: var(--spacing-lg);
+    /* Use the mid-tone color for distinct yet cohesive look */
+    background: var(--color-3-4-mid);
 }
 
 .contact-card h3 {
@@ -914,7 +920,7 @@ header {
 
 .skill-tag {
     background: var(--accent-dim);
-    color: var(--accent-primary);
+    color: var(--color-1);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-lg);
     font-size: var(--font-size-xs);
@@ -969,13 +975,13 @@ header {
 }
 
 .skill-tag {
-    background: var(--accent-dim);
+    background: var(--color-3-4-mid);
     color: var(--accent-primary);
-    padding: 0.4rem 0.5rem;
+    padding: 0.4rem 0.4rem;
     border-radius: 14px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    border: 1px solid var(--accent-dim);
+    border: 2px solid var(--accent-dim);
     transition: var(--t-fast);
 }
 
@@ -1461,8 +1467,8 @@ h2 {
     }
     
     .simple-nav .logo-container {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
     
     .logo {
@@ -1472,7 +1478,7 @@ h2 {
     
     .js-text {
         font-size: 10px;
-        margin-top: -5px;
+        margin-top: -10px;
     }
 }
 
@@ -1492,3 +1498,10 @@ h2 {
         scroll-behavior: auto !important;
     }
 }
+/* Square background for hero main & contact cards */
+.main-card,
+.contact-card {
+    /* Use the mid-tone color for distinct yet cohesive look */
+    background: var(--color-3-4-mid);
+}
+
