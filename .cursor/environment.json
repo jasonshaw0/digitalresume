@@ -1,0 +1,12 @@
+{
+  "terminals": [
+    {
+      "name": "Serve static site",
+      "command": "python -m http.server 8000"
+    }
+  ],
+  "build": {
+    "context": "..",
+    "dockerfile": ".cursor/Dockerfile"
+  }
+}

@@ -15,14 +15,14 @@
 
 :root {
     /* 5-Color Palette System - Dark with Accent Theme */
-    --color-1: #d3d3d3;   /* Light cream/neutral - text & highlights */
-    --color-2: #d58d1a;   /* Primary accent red - main accent */
-    --color-3: #31353b;   /* Medium gray - card backgrounds */
-    --color-4: #191d23;   /* Dark background - main background */    --color-5: #232323;   /* Darkest background - deeper elements */
+    --color-1: #cecece;   /* Light cream/neutral - text & highlights */
+    --color-2: #c6540e;   /* Primary accent red - main accent */
+    --color-3: hsl(0, 0%, 14%);   /* Medium gray - card backgrounds */
+    --color-4: #151719;   /* Dark background - main background */    --color-5: #232323;   /* Darkest background - deeper elements */
     
     /* Logo-specific colors */
     --logo-j-color: #ffffff;     /* White for J in logo */
-    --logo-s-color: #1a1c20;     /* Dark for S in logo */
+    --logo-s-color: #1a1d21;     /* Dark for S in logo */
     
     --logo-primary: var(--color-1);
     --logo-secondary: var(--color-2);
@@ -31,11 +31,11 @@
     --bg-secondary: var(--color-5);    /* Darker background areas */
     --bg-panel: var(--color-3);        /* Card backgrounds */
     --fg-primary: var(--color-1);      /* Main text */
-    --fg-secondary: rgba(245, 233, 221, 0.7);  /* Secondary text - derived from color-1 */
+    --fg-secondary: rgba(237, 237, 237, 0.7);  /* Secondary text - derived from color-1 */
     --accent-primary: var(--color-2);  /* Main accent */
-    --accent-secondary: #f49b0d;  /* Lighter accent variant - derived from color-2 */
-    --accent-dim: rgba(111, 77, 4, 0.471);  /* Dimmed accent - derived from color-2 */
-    --accent-hover: #ffe100;  /* Hover accent - derived from color-2 */
+    --accent-secondary: #d43a02;  /* Lighter accent variant - derived from color-2 */
+    --accent-dim: rgb(103, 43, 0);  /* Dimmed accent - derived from color-2 */
+    --accent-hover: #b04b0c;  /* Hover accent - derived from color-2 */
     
     /* Design system variables */
     --radius-sm: 4px;

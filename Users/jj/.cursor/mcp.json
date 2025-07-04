@@ -1,0 +1,103 @@
+{
+  "mcpServers": {
+    "background-agent-config": {
+      "context": {
+        "project_type": "Personal résumé website – two-section layout (Hero + Projects/Contact)",
+        "non_negotiables": [
+          "Maintain existing two-section structure and overall page height",
+          "No major overhaul; focus on polished, incremental improvements",
+          "Use new dark palette (#232533, #323445, #2c2e3e) + light accent (#ebeaed ± variations)",
+          "Keep hover animations but remove color-filter overlays on cards",
+          "Prevent pinch-zoom across devices (using viewport meta & touch-action)",
+          "Vertically centre 'About' between Hero and Contact on desktop"
+        ],
+        "deliverables": [
+          "Updated CSS variables + small stylesheet refactors",
+          "Minor JS/QoL improvements (no framework migration)",
+          "Zero direct git commits; output only patch-ready code + changelog"
+        ]
+      },
+      "agents": [
+        {
+          "id": "DesignAgent",
+          "role": "UI/UX & Palette Specialist",
+          "tasks": [
+            "Replace current 5-color variables with new palette tokens.",
+            "Map old variables to new ones; ensure text contrast ≥ WCAG AA.",
+            "Introduce missing --bg-primary, --bg-secondary, --fg-primary vars where needed.",
+            "Output before/after diff snippet for :root block."
+          ],
+          "deliverable": "styles/palette_patch.css"
+        },
+        {
+          "id": "CleanupAgent",
+          "role": "CSS Refactor & Redundancy Hunter",
+          "tasks": [
+            "Parse stylesheet; flag duplicates, unused selectors, legacy comments.",
+            "Consolidate media queries (≤480px / ≤768px / landscape) by merging rules.",
+            "Convert fixed pixel paddings/margins to var(--spacing-*) where feasible."
+          ],
+          "deliverable": "styles/cleanup_patch.css"
+        },
+        {
+          "id": "InteractionAgent",
+          "role": "JavaScript & Micro-interaction Engineer",
+          "tasks": [
+            "Remove color-filter on .card:hover while keeping translate/box-shadow animation.",
+            "Add subtle parallax or scroll-reveal effects with prefers-reduced-motion fallback.",
+            "Inject touch-action: manipulation and viewport user-scalable=no to disable zoom.",
+            "Ensure interactions remain keyboard/ARIA accessible."
+          ],
+          "deliverable": "script/interaction_patch.js"
+        },
+        {
+          "id": "MobileAgent",
+          "role": "Responsive & Viewport QA",
+          "tasks": [
+            "Audit breakpoints on real devices (DevTools emulation + web references).",
+            "Fine-tune font-size scaling, container widths, and tap targets.",
+            "Vertically centre About card between Hero & Contact on ≥1024 px width.",
+            "Output CSS overrides or utility classes."
+          ],
+          "deliverable": "styles/mobile_patch.css"
+        },
+        {
+          "id": "ResearchScout",
+          "role": "External Inspiration & Snippet Finder",
+          "tasks": [
+            "Collect open-source résumé sites & dark-theme templates for reference.",
+            "Gather CSS clamp typography scales and GSAP scroll progress snippets.",
+            "Provide annotated links and copy-ready code samples."
+          ],
+          "deliverable": "research/inspiration.md"
+        },
+        {
+          "id": "AccessibilityAgent",
+          "role": "A11y Auditor",
+          "tasks": [
+            "Run aXe-core (or similar) against updated pages.",
+            "Flag contrast violations or tabindex issues introduced by other agents.",
+            "Suggest aria-labels / semantic tweaks."
+          ],
+          "deliverable": "reports/a11y_report.md"
+        }
+      ],
+      "coordination": {
+        "pipeline": [
+          "ResearchScout → shares snippets",
+          "DesignAgent → updates palette using snippets when helpful",
+          "CleanupAgent & MobileAgent → run in parallel on updated CSS",
+          "InteractionAgent → update JS/CSS, consult MobileAgent for touch behaviour",
+          "AccessibilityAgent → final pass; open tickets for blocking issues"
+        ],
+        "review_channel": "pull-request-draft.md",
+        "merge_strategy": "squash after approval",
+        "forbidden_actions": [
+          "Pushing directly to main",
+          "Any modification that expands section count or base viewport height"
+        ]
+      },
+      "changelog_template": "## [Unreleased] – YYYY-MM-DD\n### Added\n- New dark colour palette variables (--color-dark-primary, …)\n- JS scroll-reveal effect with prefers-reduced-motion fallback\n### Changed\n- Removed color-filter overlay on card hover; kept existing lift animation\n- Consolidated mobile media queries (<768 px)\n### Fixed\n- Contrast issues in footer links (WCAG AA)\n### Removed\n- Duplicate .skill-tag definitions"
+    }
+  }
+}
