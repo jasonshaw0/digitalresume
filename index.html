@@ -2,97 +2,128 @@
 <html lang="en" class="no-js">
 
 <head>
-    <link rel="icon" href="js_icon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/js_icon.svg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://c2dnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-oHDEc8XedbSgRYoGtKnVjV1hKpOZASgO6bfE1d3NjkIMkVwmj3T0NuGJyu1Q9vFT+Pnb7Az8+7p0QZV+hvKOew=="
         crossorigin="anonymous">
+    <!-- Material Symbols for sidebar and CTA icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
 </head>
 
 <body>
-    <header>
-        <nav class="container simple-nav" id="navBar">
-            <div class="logo-container">
-                <img src="assets\js_icon.svg" alt="Jason Shaw Logo" class="logo">
-                <span class="js-text"><span class="j">J</span><span class="s">S</span></span>
-            </div>
-        </nav>
-    </header>
     
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress">
-        <div class="progress-line">
-            <div class="progress-fill"></div>
-            <div class="progress-dot hero-dot"></div>
-            <div class="progress-dot projects-dot"></div>
+    
+    <!-- Minimal brand above sidebar -->
+
+    <!-- Sidebar navigation (clickable circles with icons) -->
+    <nav class="sidebar-nav" aria-label="Section navigation">
+        <div class="sidebar-icons">
+            <div class="side-item">
+                <button class="side-dot" data-target="#home" aria-label="Home">
+                    <span class="material-symbols-outlined icon">home</span>
+                    <span class="fill"></span>
+                </button>
+                <span class="side-label">Home</span>
+            </div>
+            <div class="side-item">
+                <button class="side-dot" data-target="#about" aria-label="About">
+                    <span class="material-symbols-outlined icon">info</span>
+                    <span class="fill"></span>
+                </button>
+                <span class="side-label">About</span>
+            </div>
+            <div class="side-item">
+                <button class="side-dot" data-target="#projects" aria-label="Projects">
+                    <span class="material-symbols-outlined icon">architecture</span>
+                    <span class="fill"></span>
+                </button>
+                <span class="side-label">Projects</span>
+            </div>
+            <div class="side-item">
+                <button class="side-dot" data-target="#contact" aria-label="Contact">
+                    <span class="material-symbols-outlined icon">3p</span>
+                    <span class="fill"></span>
+                </button>
+                <span class="side-label">Contact</span>
+            </div>
         </div>
-    </div>
+    </nav>
+    <div class="sidebar-copy"><span class="c">© <span id="year"></span><span class="n"> Jason Shaw</span></div>
 
     <main>
-        <section id="hero" class="hero-compact">
+        <!-- Home section (new hero) -->
+        <section id="home" class="hero">
             <div class="container">
-                <div class="hero-layout">
-                    <div class="hero-left">
-                        <div class="hero-card main-card">
-                            <div class="hero-content">
-                                <div class="hero-text">
-                                    <h1 class="hero-title">Hi, I'm <span>Jason Shaw</span></h1>
-                                    <p class="hero-sub">Electrical engineer & developer focused on <span class="highlight">Mechatronics</span> and <span class="highlight">Embedded systems</span>.</p>
-                                </div>
-                                <div class="hero-photo">
-                                    <img src="assets\jspfp.PNG" alt="Jason Shaw" class="profile-photo">
-                                </div>
-                            </div>
+                <div class="mobile-disclaimer" aria-hidden="true">This site might not look great on smaller mobile devices! <br>Switch to desktop for optimal visual experience.</div>
+                <div class="hero-inner">
+                    <img src="assets/js_icon.svg" alt="Jason Shaw Logo" class="hero-logo">
+                    <h1 class="hero-title home-title"><span class="accent-line" aria-hidden="true"></span>Hi I'm <span>Jason</span>!</h1>
+                    <p class="hero-sub home-sub">Engineer, developer, and maker.</p>
+                    <p class="hero-blurb">I'm an undergraduate electrical engineering student at USF. Through creativity and versatility, I combine hardware, software, and theory to build the things I'm passionate about!</p>
+                    <a href="#about" class="btn-cta" aria-label="More about me">
+                        <span class="label">More about me</span>
+                        <span class="icon-circle"><span class="material-symbols-outlined">arrow_downward</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About section (redesigned) -->
+        <section id="about">
+            <div class="container about-grid">
+                <div class="about-left">
+                    <h3 class="about-section-title">A Little About Me</h3>
+                    <div class="about-paragraph card">
+                        <p>I'm an undergraduate student at the University of South Florida pursuing a B.S. in Electrical Engineering. My interests are diverse, multi-disciplined, and made possible through hands-on experimentation and learning.</p>
+                    </div>
+                    <div class="about-paragraph card">
+                        <p>I love personal projects, especially those that challenge conventional applications and push boundaries between different technical domains. I work extensively with CAD software, and rapidly prototype solutions with my Prusa MK4s 3D printer.</p>
+                    </div>
+                    <div class="about-paragraph card">
+                        <p>My coding experience includes experience building embedded C++ firmware, web projects, and full-stack applications—this personal resume site being one example. My favorite place to be is at the intersection between disciplines: where mechanical constraints influence firmware design, or where web interfaces control real-time hardware systems.</p>
+                    </div>
+                    <div class="about-paragraph card">
+                        <p>Outside of academics, I spend time with music—playing guitar, piano, and exploring different genres. I'm drawn to DIY projects and tool acquisition, finding that the problem-solving mindset transfers between debugging firmware and troubleshooting household repairs.</p>
+                    </div>
+                </div>
+                <div class="about-divider"></div>
+                <aside class="about-right">
+                    <div class="stack-cards">
+                        <div class="stack-card">
+                            <h4>Design & Fabrication</h4>
+                            <div class="stack-items">Fusion 360 • SolidWorks • 3D Printing (Expert)</div>
                         </div>
-                        <div class="hero-card contact-card">
-                            <h3>Contact</h3>
-                            <p>Have a project or just want to chat? Reach out any time.</p>
-                            <form class="contact-form" action="https://formspree.io/f/xqaqbjee" method="POST">
-                                <div class="form-row">
-                                    <input type="text" placeholder="Name *" required class="form-input" name="name">
-                                    <input type="email" placeholder="Email *" required class="form-input" name="email">
-                                </div>
-                                <div class="form-content-row">
-                                    <textarea placeholder="Message *" required class="form-textarea" name="message"></textarea>
-                                    <button type="submit" class="btn contact-btn">Send</button>
-                                </div>
-                            </form>
-                            <p class="socials-text">Or visit my socials</p>
-                            <div class="socials expanded">
-                                <i class="fab fa-linkedin fa-2x" onclick="location.href='https://www.linkedin.com/in/jason-shaw-a590a5333/'"></i>
-                                <i class="fab fa-github fa-2x" onclick="location.href='https://github.com/jasonshaw0'"></i>
-                                <i class="fab fa-youtube fa-2x" onclick="location.href='https://www.youtube.com/@slaxxis'"></i>
-                                <i class="fab fa-instagram fa-2x" onclick="location.href='https://www.instagram.com/jason._.shaw/'"></i>
-                            </div>
+                        <div class="stack-card">
+                            <h4>Web & UI</h4>
+                            <div class="stack-items">HTML/CSS/JavaScript • UI Design • Cloud</div>
+                        </div>
+                        <div class="stack-card">
+                            <h4>Software & Tools</h4>
+                            <div class="stack-items">Python • C++ • Git • Linux • Ollama/HuggingFace • Technical Writing</div>
+                        </div>
+                        <div class="stack-card">
+                            <h4>Embedded & Control</h4>
+                            <div class="stack-items">STM32 • ESP32 • RT C/C++ • Bluetooth/Wi‑Fi • Sensor Integration • Servo/Stepper Control</div>
                         </div>
                     </div>
-                    <div class="hero-right">
-                        <div class="hero-card about-card">
-                            <h3>About</h3>
-                            <div class="hero-job">
-                                <span class="job-title">Teaching Assistant · EGN 3000L (Foundations of Engineering Lab)</span>
-                            </div>
-                            <p>I'm an Undergraduate electrical engineering student interested in theory, hardware, and software alike. I spend evenings and late nights with hands-on learning such as circuitry experimentation, 3D printing my designs, or developing CS projects like this personal resume page! Aside from academics, I enjoy unwinding by playing my guitar, listening to history podcasts, or going down the occasional philosophy rabbit-hole.</p>
-                            <div class="hero-skills">
-                                <span class="skill-tag usf-theme">University of South Florida · Tampa</span>
-                                <span class="skill-tag">Python · Frontend · C++ & Arduino</span>
-                                <span class="skill-tag">3D Printing · CAD</span>
-                                <span class="skill-tag">Esp32 · Arduino · Raspberry Pi</span>
-                            </div>
-                        </div>
-                        <div class="hero-cta-section">
-                            <div class="hero-cta">
-                                <a class="btn btn-primary" href="assets\jason-shaw_cv.pdf" download="jason-shaw_cv.pdf">Download CV</a>
-                                <a class="btn btn-secondary" href="#projects">View Projects</a>
-                            </div>
-                        </div>
+
+                    <div class="experience">
+                        <h4>Education & Experience</h4>
+                        <p class="exp past">• Fernandina Beach High School (2020 – 2024)</p>
+                        <p class="exp past">• Sales Associate, Ace Hardware (2022 – 2024)</p>
+                        <p class="exp current">• The University of South Florida (2024 – )</p>
+                        <p class="exp current">• Teaching Assistant, EGN 3000L (2025 – )</p>
                     </div>
+                    
+                </aside>
             </div>
         </section>
         <section id="projects" class="container">
@@ -119,6 +150,7 @@
                 </article>
                 <article class="card">
                     <h3 class="card-title">TheoremBank</h3>
+                    <p class="stack" style=" color: var(--accent-primary); margin-bottom: -6px;">Work in Progress</p>
                     <p class="stack">HTML · MathJax · Python</p>
                     <p>Static reference site for mathematics and physics formulas with LaTeX rendering, advanced search functionality, and a live math editor.</p>
                     <a class="btn" href="https://github.com/jasonshaw0/Theorembank" target="_blank">Repo</a>
@@ -131,12 +163,39 @@
                     <a class="btn" href="https://github.com/trevorflahardy/The-Arduino-Guide" target="_blank">Repo</a>
                 </article>
             </div>
-            <div class="projects-credits">
-                <p>© <span id="year"></span> Jason Shaw. All rights reserved.</p>
+        </section>
+        <!-- Contact section restored -->
+        <section id="contact">
+            <div class="container">
+                <div class="hero-card contact-card">
+                    <h3>Contact Me</h3>
+                    <p>Have a project or just want to chat? Reach out any time.</p>
+                    <form class="contact-form" action="https://formspree.io/f/xqaqbjee" method="POST">
+                        <div class="form-row">
+                            <input type="text" placeholder="Name *" required class="form-input" name="name">
+                            <input type="email" placeholder="Email *" required class="form-input" name="email">
+                        </div>
+                        <div class="form-content-row">
+                            <textarea placeholder="Message *" required class="form-textarea" name="message"></textarea>
+                            <button type="submit" class="btn contact-btn">Send</button>
+                        </div>
+                    </form>
+                    <div class="socials expanded">
+                        <i class="fab fa-linkedin fa-2x" onclick="location.href='https://www.linkedin.com/in/jason-shaw-a590a5333/'"></i>
+                        <i class="fab fa-github fa-2x" onclick="location.href='https://github.com/jasonshaw0'"></i>
+                        <i class="fab fa-youtube fa-2x" onclick="location.href='https://www.youtube.com/@slaxxis'"></i>
+                        <i class="fab fa-instagram fa-2x" onclick="location.href='https://www.instagram.com/jason._.shaw/'"></i>
+                        <span class="socials-email"><em>info@jason-shaw.com</em></span>
+                    </div>
+                </div>
+                <div class="contact-divider"></div>
+                <div class="contact-thanks-text"><em>Thank you for visiting my website!</em></div>
             </div>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <small class="credits">Icons: <a href="https://fontawesome.com" target="_blank" rel="noopener">Font Awesome Free</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).</small>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>

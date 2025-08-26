@@ -39,6 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
     { opacity: 1, y: 0, duration: 0.1, ease: "power2.out", delay: 0.7 }
   );
 
+  // Ensure about-section elements are visible on initial load (no hidden state)
+  document.querySelectorAll('.about-paragraph, .stack-card, .chips .chip, .experience').forEach(el => {
+    el.style.opacity = '1';
+  });
+
   // Logo hover effect
   const logoContainer = document.querySelector(".logo-container");
   if (logoContainer) {
@@ -147,14 +152,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Project cards entrance animation on scroll
-  gsap.fromTo(".card", 
-    { opacity: 0, y: 30 },
+  // Project cards entrance animation on scroll (scoped to projects only)
+  gsap.fromTo(".project-grid .card", 
+    { opacity: 0, y: 15 },
     {
       opacity: 1,
       y: 0,
-      duration: 0.4,
-      ease: "power2.out",
+      duration: 0.3,
+      ease: "power1.out",
       stagger: 0.2,
       scrollTrigger: {
         trigger: ".project-grid",
@@ -175,8 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Set up discrete snap-only scrolling
   setupDiscreteScrolling();
 
-  // Set up scroll progress indicator
-  setupScrollProgress();
+  // Set up sidebar navigation + active states
+  setupSidebarNav();
 
   // Set up button functionality
   setupButtonHandlers();
@@ -188,60 +193,63 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Setup scroll progress indicator
-function setupScrollProgress() {
-  const progressFill = document.querySelector('.progress-fill');
-  const heroDot = document.querySelector('.hero-dot');
-  const projectsDot = document.querySelector('.projects-dot');
-  
-  // Set initial state
-  if (heroDot) {
-    heroDot.classList.add('active');
-  }
-  
-  // Listen to scroll events for progress updates
-  function updateProgress() {
-    const scrollTop = window.pageYOffset;
-    const heroSection = document.getElementById('hero');
-    const projectsSection = document.getElementById('projects');
-    
-    if (heroSection && projectsSection) {
-      const heroHeight = heroSection.offsetHeight;
-      const projectsTop = projectsSection.offsetTop;
-      
-      // Calculate progress based on two sections
-      let scrollPercent = 0;
-      if (scrollTop < heroHeight) {
-        // In hero section
-        scrollPercent = scrollTop / heroHeight * 0.5; // 0 to 0.5
-      } else {
-        // In projects section or beyond
-        scrollPercent = 0.5 + ((scrollTop - projectsTop) / heroHeight) * 0.5; // 0.5 to 1
-        scrollPercent = Math.min(scrollPercent, 1);
+// Sidebar navigation and active-state logic for 3 sections
+function setupSidebarNav() {
+  const buttons = Array.from(document.querySelectorAll('.side-dot'));
+  if (!buttons.length) return;
+
+  // Click navigation (disable CSS snap during programmatic scroll to avoid bounce)
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = btn.getAttribute('data-target');
+      const el = target ? document.querySelector(target) : null;
+      if (!el) return;
+      const rootEl = document.documentElement;
+      const prevSnap = rootEl.style.scrollSnapType;
+      rootEl.style.scrollSnapType = 'none';
+      gsap.to(window, {
+        duration: 0.5,
+        scrollTo: { y: el.offsetTop, autoKill: false },
+        ease: 'power2.out',
+        onComplete: () => {
+          // Restore CSS snap after JS animation completes
+          rootEl.style.scrollSnapType = prevSnap || '';
+        }
+      });
+    });
+  });
+
+  // Intersection observer to mark active button
+  const map = {
+    '#home': buttons.find(b => b.getAttribute('data-target') === '#home'),
+    '#about': buttons.find(b => b.getAttribute('data-target') === '#about'),
+    '#projects': buttons.find(b => b.getAttribute('data-target') === '#projects'),
+    '#contact': buttons.find(b => b.getAttribute('data-target') === '#contact')
+  };
+
+  const order = ['#home', '#about', '#projects', '#contact'];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = `#${entry.target.id}`;
+        // active state highlight
+        buttons.forEach(b => b.classList.remove('active'));
+        map[id]?.classList.add('active');
+
+        // single-indicator fill: only the current section
+        buttons.forEach(b => b.classList.remove('filled'));
+        map[id]?.classList.add('filled');
       }
-      
-      // Update progress fill
-      if (progressFill) {
-        const fillHeight = Math.max(2, scrollPercent * 200);
-        progressFill.style.height = `${fillHeight}%`;
-      }
-      
-      // Update dot states based on which section is more visible
-      if (scrollTop < heroHeight * 0.5) {
-        heroDot?.classList.add('active');
-        projectsDot?.classList.remove('active');
-      } else {
-        heroDot?.classList.remove('active');
-        projectsDot?.classList.add('active');
-      }
-    }
-  }
-  
-  // Update on scroll and during animations
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  
-  // Also update during GSAP scroll animations
-  gsap.ticker.add(updateProgress);
+    });
+  }, { threshold: 0.6 });
+
+  ['home','about','projects','contact'].forEach(id => {
+    const s = document.getElementById(id);
+    if (s) observer.observe(s);
+  });
+
+  // No vertical line fill; icons alone indicate the active section
 }
 
 // Set up button handlers
@@ -291,7 +299,7 @@ function scrollToProjects() {
   const projectsSection = document.getElementById('projects');
   if (projectsSection) {
     gsap.to(window, {
-      duration: 0.6,
+      duration: 0.4,
       scrollTo: { y: projectsSection.offsetTop },
       ease: "power3.out"
     });
@@ -307,12 +315,15 @@ function setupDiscreteScrolling() {
   let isAnimating = false;
   let scrollDirection = 0;
   let scrollAccumulator = 0;
-  const SCROLL_THRESHOLD = 100; // Reduced threshold for more responsive snapping
-  const SNAP_DURATION = 400; // Faster snap transition duration
+  const SCROLL_THRESHOLD = 110; // slightly higher to avoid boundary jitter
+  const SNAP_DURATION = 320; // smooth snap duration
+  const SNAP_COOLDOWN_MS = 800; // prevent immediate re-snap
+  let lastSnapTime = 0;
   
   // Prevent default scrolling behavior
   function preventScroll(e) {
-    if (isAnimating) {
+    const now = Date.now();
+    if (isAnimating || (now - lastSnapTime) < SNAP_COOLDOWN_MS) {
       e.preventDefault();
       return false;
     }
@@ -334,50 +345,51 @@ function setupDiscreteScrolling() {
   }
   
   function triggerSnap(direction) {
-    if (isAnimating) return;
+    const now = Date.now();
+    if (isAnimating || (now - lastSnapTime) < SNAP_COOLDOWN_MS) return;
     
     const currentScrollY = window.pageYOffset;
-    const heroSection = document.getElementById('hero');
-    const projectsSection = document.getElementById('projects');
-    
-    if (!heroSection || !projectsSection) return;
-    
-    const heroHeight = heroSection.offsetHeight;
-    const projectsTop = projectsSection.offsetTop;
-    
-    let targetY = currentScrollY;
-    
-    // Determine which section we're in and where to snap
-    if (currentScrollY < heroHeight * 0.5) {
-      // In hero section
-      if (direction > 0) {
-        // Scroll down - snap to projects
-        targetY = projectsTop;
-      } else {
-        // Scroll up - stay in hero (snap to top)
-        targetY = 0;
-      }
-    } else {
-      // In projects section or between
-      if (direction > 0) {
-        // Scroll down - stay in projects (already there)
-        targetY = projectsTop;
-      } else {
-        // Scroll up - snap to hero
-        targetY = 0;
+    const home = document.getElementById('home');
+    const about = document.getElementById('about');
+    const projects = document.getElementById('projects');
+    const contact = document.getElementById('contact');
+    if (!home || !about || !projects || !contact) return;
+
+    const sections = [home, about, projects, contact];
+    const tops = sections.map(s => s.offsetTop);
+    const centers = sections.map(s => s.offsetTop + (s.offsetHeight / 2));
+
+    // Use viewport center to avoid asymmetric margins when snapping from different directions
+    const viewportCenterY = currentScrollY + (window.innerHeight / 2);
+    let idx = 0;
+    for (let i = 1; i < centers.length; i++) {
+      if (Math.abs(viewportCenterY - centers[i]) < Math.abs(viewportCenterY - centers[idx])) {
+        idx = i;
       }
     }
+
+    // Determine target index based on direction
+    const nextIdx = direction > 0 ? Math.min(idx + 1, tops.length - 1) : Math.max(idx - 1, 0);
+    const targetY = tops[nextIdx];
     
     // Only animate if we're actually changing position
     if (Math.abs(targetY - currentScrollY) > 50) {
       isAnimating = true;
       
+      // Temporarily disable native CSS scroll-snap to avoid bounce during JS animation
+      const rootEl = document.documentElement;
+      const prevSnap = rootEl.style.scrollSnapType;
+      rootEl.style.scrollSnapType = 'none';
+
       gsap.to(window, {
-        duration: SNAP_DURATION / 1000,
+        duration: SNAP_DURATION / 2000,
         scrollTo: { y: targetY },
-        ease: "power3.out",
+        ease: "power2.out",
         onComplete: () => {
           isAnimating = false;
+          lastSnapTime = Date.now();
+          // Restore scroll-snap after animation
+          rootEl.style.scrollSnapType = '';
         }
       });
     }
@@ -392,7 +404,8 @@ function setupDiscreteScrolling() {
   const TOUCH_THRESHOLD = 30; // Lower threshold for touch
   
   window.addEventListener('touchstart', (e) => {
-    if (isAnimating) {
+    const now = Date.now();
+    if (isAnimating || (now - lastSnapTime) < SNAP_COOLDOWN_MS) {
       e.preventDefault();
       return;
     }
@@ -445,14 +458,10 @@ function setupDiscreteScrolling() {
         });
         return;
       } else if (e.key === 'End') {
-        // Go to projects
-        const projectsSection = document.getElementById('projects');
-        if (projectsSection) {
-          gsap.to(window, {
-            duration: 0.6,
-            scrollTo: { y: projectsSection.offsetTop },
-            ease: "power3.out"
-          });
+        // Go to contact (last section)
+        const el = document.getElementById('contact');
+        if (el) {
+          gsap.to(window, { duration: 0.6, scrollTo: { y: el.offsetTop }, ease: "power3.out" });
         }
         return;
       }
