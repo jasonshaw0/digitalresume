@@ -2,3 +2,4 @@
 name = 'jasonshaw'
 compatibility_date = "2025-07-04"
 main = "src/index.ts"
+assets = { directory = "." }
